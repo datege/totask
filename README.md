@@ -2,6 +2,8 @@
 
 在 VS Code 中用纯文本管理待办清单（`.todo`、`.tasks` 等）。
 
+仓库：https://github.com/datege/totask
+
 ## 功能
 
 - **语法高亮**：项目标题、任务符号、@标签、优先级
@@ -46,6 +48,43 @@ npm run compile
 ```
 
 按 `F5` 运行扩展，打开 `examples/sample.todo` 试用。
+
+## 发布到 VS Code 市场
+
+### 1. 创建发布者（仅需一次）
+
+1. 打开 [Visual Studio Marketplace 管理](https://marketplace.visualstudio.com/manage)
+2. 用 **Microsoft 账号**登录
+3. 点击 **Create publisher**，Publisher ID 填 **`totask`**（须与 `package.json` 中 `"publisher": "totask"` 一致）
+
+### 2. 创建 Azure DevOps PAT
+
+1. 打开 [Azure DevOps](https://dev.azure.com/) → 用户图标 → **Personal access tokens**
+2. **New Token**，Scopes 勾选 **Marketplace** → **Manage**
+3. 复制令牌（只显示一次）
+
+### 3. 登录并发布
+
+```powershell
+cd d:\localsvn\project\totask
+npm run compile
+npx @vscode/vsce login totask
+# 粘贴 Marketplace PAT（不是 GitHub Token）
+
+npm run publish
+```
+
+或一行发布：
+
+```powershell
+npx @vscode/vsce publish -p <Marketplace_PAT>
+```
+
+成功后：https://marketplace.visualstudio.com/items?itemName=totask.totask
+
+### 4. 后续更新
+
+修改 `package.json` 的 `version`，更新 `CHANGELOG.md`，再执行 `npm run publish`。
 
 ## 许可
 

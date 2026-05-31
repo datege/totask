@@ -4,6 +4,14 @@
   "description": "纯文本待办清单，支持语法高亮、预览、标签与归档",
   "version": "1.0.0",
   "publisher": "totask",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/datege/totask.git"
+  },
+  "bugs": {
+    "url": "https://github.com/datege/totask/issues"
+  },
+  "homepage": "https://github.com/datege/totask#readme",
   "license": "MIT",
   "icon": "media/icon.png",
   "pricing": "Free",
