@@ -1,0 +1,336 @@
+{
+  "name": "totask",
+  "displayName": "ToTask",
+  "description": "纯文本待办清单，支持语法高亮、预览、标签与归档",
+  "version": "1.0.0",
+  "publisher": "totask",
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "pricing": "Free",
+  "keywords": [
+    "todo",
+    "tasks",
+    "plaintext",
+    "task list",
+    "preview"
+  ],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "galleryBanner": {
+    "color": "#1e3a5f",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onLanguage:todo"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "todo",
+        "aliases": [
+          "Tasks",
+          "Todo",
+          "ToTask"
+        ],
+        "extensions": [
+          ".todo",
+          ".tasks",
+          ".todolist",
+          ".taskpaper"
+        ],
+        "filenames": [
+          "TODO",
+          "todolist.txt"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "todo",
+        "scopeName": "text.todo",
+        "path": "./syntaxes/tasks.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "todo",
+        "path": "./snippets/tasks.code-snippets"
+      }
+    ],
+    "commands": [
+      {
+        "command": "totask.newDocument",
+        "title": "Tasks: 新建文档",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.newTask",
+        "title": "Tasks: 新建任务",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.newTaskWithDate",
+        "title": "Tasks: 新建任务（含创建时间）",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.toggleComplete",
+        "title": "Tasks: 标记完成/未完成",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.toggleCancel",
+        "title": "Tasks: 标记取消/恢复",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.archive",
+        "title": "Tasks: 归档已完成",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.insertDueDate",
+        "title": "Tasks: 插入截止日期",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.insertSeparator",
+        "title": "Tasks: 插入分隔线",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.filterByTags",
+        "title": "Tasks: 按光标下标签过滤折叠",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.clearFilter",
+        "title": "Tasks: 清除标签过滤",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.foldToDue",
+        "title": "Tasks: 折叠到含 @due 的任务",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.openPreview",
+        "title": "Tasks: 打开预览",
+        "category": "Tasks",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "totask.openPreviewToSide",
+        "title": "Tasks: 侧边打开预览",
+        "category": "Tasks",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "totask.exportHtml",
+        "title": "Tasks: 在浏览器中预览 HTML",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.exportHtmlSave",
+        "title": "Tasks: 另存为 HTML…",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.insertStarted",
+        "title": "Tasks: 插入 @started 计时",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.insertToggle",
+        "title": "Tasks: 插入 @toggle 暂停/继续",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.fillTagDate",
+        "title": "Tasks: 填充标签日期 / 重算耗时",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.orgArchive",
+        "title": "Tasks: Org-Mode 式归档到独立文件",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.sortByDue",
+        "title": "Tasks: 按截止日期与优先级排序",
+        "category": "Tasks"
+      },
+      {
+        "command": "totask.sortByDueDesc",
+        "title": "Tasks: 按截止日期与优先级倒序",
+        "category": "Tasks"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "totask.openPreviewToSide",
+          "when": "editorLangId == todo",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "totask.openPreviewToSide",
+          "when": "editorLangId == todo",
+          "group": "totask@1"
+        },
+        {
+          "command": "totask.filterByTags",
+          "when": "editorLangId == todo",
+          "group": "totask@1"
+        },
+        {
+          "command": "totask.clearFilter",
+          "when": "editorLangId == todo",
+          "group": "totask@1"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "totask.toggleComplete",
+        "key": "ctrl+d",
+        "when": "editorLangId == todo"
+      },
+      {
+        "command": "totask.toggleCancel",
+        "key": "alt+c",
+        "when": "editorLangId == todo"
+      },
+      {
+        "command": "totask.newTask",
+        "key": "ctrl+enter",
+        "when": "editorLangId == todo"
+      },
+      {
+        "command": "totask.newTaskWithDate",
+        "key": "ctrl+shift+enter",
+        "when": "editorLangId == todo"
+      },
+      {
+        "command": "totask.archive",
+        "key": "ctrl+shift+a",
+        "when": "editorLangId == todo"
+      },
+      {
+        "command": "totask.insertDueDate",
+        "key": "f4",
+        "when": "editorLangId == todo"
+      },
+      {
+        "command": "totask.orgArchive",
+        "key": "ctrl+shift+o",
+        "when": "editorLangId == todo"
+      },
+      {
+        "command": "totask.sortByDue",
+        "key": "f5",
+        "when": "editorLangId == todo"
+      },
+      {
+        "command": "totask.sortByDueDesc",
+        "key": "f7",
+        "when": "editorLangId == todo"
+      },
+      {
+        "command": "totask.fillTagDate",
+        "key": "ctrl+shift+t",
+        "when": "editorLangId == todo"
+      },
+      {
+        "command": "totask.openPreviewToSide",
+        "key": "ctrl+shift+v",
+        "when": "editorLangId == todo"
+      },
+      {
+        "command": "totask.openPreview",
+        "key": "ctrl+k v",
+        "when": "editorLangId == todo"
+      }
+    ],
+    "configuration": {
+      "title": "ToTask",
+      "properties": {
+        "totask.openTasksBullet": {
+          "type": "string",
+          "default": "☐",
+          "description": "未完成任务符号"
+        },
+        "totask.doneTasksBullet": {
+          "type": "string",
+          "default": "✔",
+          "description": "已完成任务符号"
+        },
+        "totask.cancelledTasksBullet": {
+          "type": "string",
+          "default": "✘",
+          "description": "已取消任务符号"
+        },
+        "totask.beforeTasksBulletMargin": {
+          "type": "number",
+          "default": 2,
+          "description": "任务符号前的空格数"
+        },
+        "totask.dateFormat": {
+          "type": "string",
+          "default": "(%y-%m-%d %H:%M)",
+          "description": "日期格式（%y 两位年，%m 月，%d 日，%H 时，%M 分）"
+        },
+        "totask.doneTag": {
+          "type": "boolean",
+          "default": true,
+          "description": "完成时自动添加 @done 及时间戳"
+        },
+        "totask.archiveName": {
+          "type": "string",
+          "default": "Archive:",
+          "description": "归档区项目标题（须唯一）"
+        },
+        "totask.newOnTop": {
+          "type": "boolean",
+          "default": true,
+          "description": "归档时新条目放在归档区顶部"
+        },
+        "totask.projectTag": {
+          "type": "boolean",
+          "default": true,
+          "description": "归档时为 true 则在行尾追加 @project，否则在行首"
+        },
+        "totask.decimalMinutes": {
+          "type": "boolean",
+          "default": false,
+          "description": "计时时长用小数小时（如 1.50h），否则用 H:MM 或分钟"
+        },
+        "totask.archiveOrgFilemask": {
+          "type": "string",
+          "default": "{dir}{sep}{base}_archive{ext}",
+          "description": "Org-Mode 归档文件路径模板（{dir}{sep}{base}{ext}）"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npx @vscode/vsce package --allow-missing-repository",
+    "publish": "npx @vscode/vsce publish --allow-missing-repository"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Tasks",
+  "scopeName": "text.todo",
+  "patterns": [
+    { "include": "#header" },
+    { "include": "#completed" },
+    { "include": "#cancelled" },
+    { "include": "#archive_line" },
+    { "include": "#separator" },
+    { "include": "#pending" },
+    { "include": "#notes" }
+  ],
+  "repository": {
+    "header": {
+      "match": "^\\s*(#?\\s?\\w+.*?:\\s*?(?:@[^\\s]+(?:\\(.*?\\))?\\s*)*)$",
+      "name": "keyword.control.header.todo"
+    },
+    "completed": {
+      "match": "^\\s*(?:(\\+|✓|✔|☑|√|\\[x\\])(\\s+(?:[^@\\n]|(?<!\\s)@|@(?=\\s))*)(.*))$",
+      "name": "meta.item.todo.completed",
+      "captures": {
+        "1": { "name": "punctuation.definition.bullet.completed.todo" },
+        "2": { "name": "comment.line.completed.todo" },
+        "3": { "name": "meta.tag.todo.completed" }
+      }
+    },
+    "cancelled": {
+      "match": "^\\s*(?:(✘|❌|x|\\[-\\])(\\s+(?:[^@\\n]|(?<!\\s)@|@(?=\\s))*)(.*))$",
+      "name": "meta.item.todo.cancelled",
+      "captures": {
+        "1": { "name": "punctuation.definition.bullet.cancelled.todo" },
+        "2": { "name": "text.cancelled.todo" },
+        "3": { "name": "meta.tag.todo.cancelled" }
+      }
+    },
+    "pending": {
+      "begin": "^\\s*(-|❍|❑|■|□|☐|▪|▫|–|—|≡|→|›|\\[\\s\\])(\\s+.*)?$",
+      "end": "$",
+      "name": "meta.item.todo.pending",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.bullet.pending.todo" }
+      },
+      "patterns": [
+        { "include": "#tag" },
+        { "include": "#today" },
+        { "include": "#low" },
+        { "include": "#high" },
+        { "include": "#critical" },
+        { "include": "#url" },
+        { "include": "#bold" },
+        { "include": "#italic" }
+      ]
+    },
+    "notes": {
+      "begin": "^\\s*(?!-|\\+|✓|✔|√|❍|❑|■|□|☐|▪|▫|–|—|≡|→|›|\\[[\\sx-]\\]|＿|✘|❌)(?=\\S)",
+      "end": "$",
+      "name": "notes.todo",
+      "patterns": [
+        { "include": "#url" },
+        { "include": "#bold" },
+        { "include": "#italic" }
+      ]
+    },
+    "archive_line": {
+      "match": "^＿+$",
+      "name": "meta.punctuation.archive.todo"
+    },
+    "separator": {
+      "match": "^\\s*---.{3,5}---+$",
+      "name": "meta.punctuation.separator.todo"
+    },
+    "tag": {
+      "match": "(?<=\\s)@(?!high\\b|today\\b|critical\\b|low\\b|completed\\b|done\\b)[\\w\\d\\.\\(\\)\\-!? :\\+]+",
+      "name": "meta.tag.todo"
+    },
+    "today": {
+      "match": "(?<=\\s)@today|✭ᴛᴏᴅᴀʏ",
+      "name": "string.other.tag.todo.today"
+    },
+    "low": {
+      "match": "(?<=\\s)@low|✭low",
+      "name": "string.other.tag.todo.low"
+    },
+    "high": {
+      "match": "(?<=\\s)@high|✭high",
+      "name": "string.other.tag.todo.high"
+    },
+    "critical": {
+      "match": "(?<=\\s)@critical|✭critical",
+      "name": "string.other.tag.todo.critical"
+    },
+    "url": {
+      "match": "(?<!\\S)(<)\\S+?(\\.|:)\\S+?(>)",
+      "name": "todo.url",
+      "captures": {
+        "1": { "name": "punctuation.definition.url" }
+      }
+    },
+    "bold": {
+      "begin": "(?<=\\s|^)(\\*\\*|__)(?=\\S)",
+      "end": "(?<=\\S)(\\1)",
+      "name": "todo.bold",
+      "beginCaptures": { "1": { "name": "punctuation.definition.bold" } }
+    },
+    "italic": {
+      "begin": "(?<=\\s|^)(\\*|_)(?=\\S)",
+      "end": "(?<=\\S)(\\1)",
+      "name": "todo.italic",
+      "beginCaptures": { "1": { "name": "punctuation.definition.italic" } }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+# ToTask 示例清单 — 纯文本待办语法说明
+# 保存为 .todo 后自动启用语法高亮；命令面板搜索「Tasks:」查看全部命令
+
+Inbox:
+  ☐ 读完本文件后删掉不需要的示例行 @low
+  ☐ 新建任务：光标在行尾按 Ctrl+Enter @feature
+  ☐ 带创建时间：Ctrl+Shift+Enter 会追加 @created(日期) @feature
+
+工作 · 插件开发:
+  ☐ 实现用户反馈的导出样式 @high @due(2026-06-15)
+    备注行会缩进显示在任务下方，归档时一并移动
+  ☐ 按 @feature 过滤：光标放在 @feature 上 → 右键「按光标下标签过滤折叠」
+  ☐ 只看待办截止日：命令「折叠到含 @due 的任务」 @feature
+  ☐ 紧急修复线上告警 @critical @due(2026-05-28)
+  ☐ 写单元测试（可暂缓） @low
+  ☐ 计时：先插入 @started，暂停用 @toggle，完成 Ctrl+D 会加 @lasted @started(26-05-31 09:00)
+  ☐ 项目仓库与说明见 README.md
+
+工作 · 发布:
+  ☐ 打包 .vsix 并写 CHANGELOG @due(2026-06-01) @high
+  ☐ Marketplace 截图与说明 @medium
+
+个人:
+  ☐ 超市：牛奶、鸡蛋 @today @low
+  ☐ 预约体检 @due(2026-07-10)
+  ☐ 读完一章 *《深度工作》* — 支持 *斜体* 与 **粗体** 标记
+  ✘ 已放弃的健身打卡（示例：Alt+C 标记取消） @cancelled (26-05-20 18:00)
+
+学习:
+  ☐ Rust 所有权章节 @due(2026-06-20) @high
+  ☐ 整理笔记到 wiki @low
+    子任务可以写在备注里，不必再建 ☐ 行
+
+--- ✄ -----------------------
+# 上方分隔线：片段输入 -- 再 Tab，或命令「插入分隔线」
+
+快捷键备忘:
+  ☐ Ctrl+D  完成 ↔ 待办（有 @started 时自动 @lasted）
+  ☐ Alt+C   取消 ↔ 恢复
+  ☐ Ctrl+Shift+A  把 ✔ 任务移到下方 Archive
+  ☐ Ctrl+Shift+O  把光标处项目/子树移到 xxx_archive.todo
+  ☐ F4  插入 @due(今天)；F5/F7  在当前项目内排序
+  ☐ Ctrl+Shift+T  填充 @started() / @due() 或重算耗时
+  ☐ Ctrl+Shift+V  侧边预览（类似 Markdown 预览）
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+  ✔ 初始化 VS Code 扩展脚手架 @done (26-05-30 14:20) @project(工作 · 插件开发) @feature
+  ✔ 语法高亮与 snippets @done (26-05-30 16:00) @project(工作 · 插件开发)
+  ✔ 核心命令：新建 / 完成 / 取消 / 归档 @done (26-05-31 10:00) @project(工作 · 插件开发) @lasted(2:15)
+  ✔ 按标签过滤、HTML 导出、计时、Org 归档、排序 @done (26-05-31 12:00) @project(工作 · 插件开发) @feature
+  ✘ 改用 GraphQL 重写后端（示例取消项） @cancelled (26-05-15 11:00) @project(工作 · 发布)

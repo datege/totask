@@ -1,0 +1,42 @@
+{
+  "critical": {
+    "prefix": "c",
+    "body": "@critical",
+    "description": "紧急优先级"
+  },
+  "high": {
+    "prefix": "h",
+    "body": "@high",
+    "description": "高优先级"
+  },
+  "low": {
+    "prefix": "l",
+    "body": "@low",
+    "description": "低优先级"
+  },
+  "today": {
+    "prefix": "t",
+    "body": "@today",
+    "description": "今天"
+  },
+  "due": {
+    "prefix": "due",
+    "body": "@due(${1:yyyy-mm-dd})",
+    "description": "截止日期"
+  },
+  "started": {
+    "prefix": "s",
+    "body": "@started(${1})",
+    "description": "开始计时"
+  },
+  "created": {
+    "prefix": "cr",
+    "body": "@created(${1})",
+    "description": "创建时间"
+  },
+  "separator": {
+    "prefix": "--",
+    "body": "--- ✄ -----------------------",
+    "description": "分隔线"
+  }
+}
