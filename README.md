@@ -47,6 +47,33 @@ npm run compile
 
 按 `F5` 运行扩展，打开 `examples/sample.todo` 试用。
 
+## 上传到 GitHub
+
+本地已完成 `git init` 与首次提交（分支 `main`）。推送前需登录 GitHub：
+
+```powershell
+# 1. 安装 Git / GitHub CLI 后登录（浏览器授权）
+gh auth login
+
+# 2. 在项目目录创建远程仓库并推送（将 YOUR_USER 换成你的 GitHub 用户名）
+cd d:\localsvn\project\totask
+gh repo create YOUR_USER/totask --public --source=. --remote=origin --push
+```
+
+若仓库已在网页上建好，可手动添加远程并推送：
+
+```powershell
+git remote add origin https://github.com/YOUR_USER/totask.git
+git push -u origin main
+```
+
+首次提交前请在本机配置 Git 身份（仅需一次）：
+
+```powershell
+git config --global user.name "你的名字"
+git config --global user.email "你的邮箱"
+```
+
 ## 发布到 VS Code 市场
 
 1. 在 [Visual Studio Marketplace](https://marketplace.visualstudio.com/manage) 创建发布者（Publisher ID 须与 `package.json` 里 `publisher` 一致，默认 `totask`）。
